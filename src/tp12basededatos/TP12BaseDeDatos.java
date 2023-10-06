@@ -71,7 +71,7 @@ public class TP12BaseDeDatos {
                JOptionPane.showMessageDialog(null, "Error SQL");
            }
         }*/
-        try {
+        /*try {
                 // Cargar el Driver de conexión
             Class.forName("org.mariadb.jdbc.Driver");
             // Establecer la conexión a la base de datos
@@ -113,7 +113,7 @@ public class TP12BaseDeDatos {
            } else{
                JOptionPane.showMessageDialog(null, "Error SQL");
            }
-        }
+        }*/
                /*try {
                 // Cargar el Driver de conexión
             Class.forName("org.mariadb.jdbc.Driver");
