@@ -71,7 +71,7 @@ public class TP12BaseDeDatos {
                JOptionPane.showMessageDialog(null, "Error SQL");
            }
         }*/
-        /*try {
+        try {
                 // Cargar el Driver de conexión
             Class.forName("org.mariadb.jdbc.Driver");
             // Establecer la conexión a la base de datos
@@ -80,7 +80,7 @@ public class TP12BaseDeDatos {
             String password = "";
             Connection con=DriverManager.getConnection(URL,usuario,password);
             //Agregar una herramienta
-                       String consultaSQL = "SELECT nombre, descripcion, stock FROM herramienta WHERE stock > 10";
+                       String consultaSQL = "SELECT nombre, descripcion, stock, estado FROM herramienta WHERE stock > 10";
 
             PreparedStatement ps = con.prepareStatement(consultaSQL);
             ResultSet resultado = ps.executeQuery();
@@ -90,13 +90,13 @@ public class TP12BaseDeDatos {
                 String nombre = resultado.getString("nombre");
                 String descripcion = resultado.getString("descripcion");
                 int stock = resultado.getInt("stock");
-                
+                boolean estado = resultado.getBoolean("estado");
             
 
                 System.out.println("Nombre: " + nombre);
                 System.out.println("Descripción: " + descripcion);
                 System.out.println("Stock: " + stock);
-                
+                System.out.println("Estado: " + (estado ? "Activo" : "Inactivo"));
                 System.out.println("-------------------");
             }
 
@@ -113,8 +113,8 @@ public class TP12BaseDeDatos {
            } else{
                JOptionPane.showMessageDialog(null, "Error SQL");
            }
-        }*/
-               try {
+        }
+               /*try {
                 // Cargar el Driver de conexión
             Class.forName("org.mariadb.jdbc.Driver");
             // Establecer la conexión a la base de datos
@@ -161,6 +161,6 @@ public class TP12BaseDeDatos {
            } else{
                JOptionPane.showMessageDialog(null, "Error SQL");
            }
-        }
+        }*/
     }
 }
