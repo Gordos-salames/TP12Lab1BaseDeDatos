@@ -79,37 +79,23 @@ public class TP12BaseDeDatos {
             String usuario = "root";
             String password = "";
             Connection con=DriverManager.getConnection(URL,usuario,password);
-            //Consultar el estado de las herramientas con stock mayor a 10 e informacion de si estan activas y en prestamos
-                      String consultaSQL = "SELECT h.nombre AS nombre_herramienta, h.descripcion, h.stock, h.estado, " +
-                "m.idEmpleado, e.nombre AS nombre_empleado, e.apellido, m.fechap, m.fechad " +
-                "FROM herramienta h " +
-                "LEFT JOIN movimiento m ON h.idHerramienta = m.idHerramienta " +
-                "LEFT JOIN empleado e ON m.idEmpleado = e.idEmpleado " +
-                "WHERE h.stock > 10";
+          // Consulta para listar las herramientas con stock superior a 10
+            String consultaSQL = "SELECT nombre, descripcion, stock, estado FROM herramienta WHERE stock > 10";
 
             PreparedStatement ps = con.prepareStatement(consultaSQL);
             ResultSet resultado = ps.executeQuery();
 
             // Procesar y mostrar los resultados
             while (resultado.next()) {
-                String nombreHerramienta = resultado.getString("nombre_herramienta");
+                String nombre = resultado.getString("nombre");
                 String descripcion = resultado.getString("descripcion");
                 int stock = resultado.getInt("stock");
                 boolean estado = resultado.getBoolean("estado");
-                int idEmpleado = resultado.getInt("idEmpleado");
-                String nombreEmpleado = resultado.getString("nombre_empleado");
-                String apellidoEmpleado = resultado.getString("apellido");
-                Date fechaPrestamo = resultado.getDate("fechap");
-                Date fechaDevolucion = resultado.getDate("fechad");
 
-                System.out.println("Nombre de la Herramienta: " + nombreHerramienta);
+                System.out.println("Nombre: " + nombre);
                 System.out.println("Descripción: " + descripcion);
                 System.out.println("Stock: " + stock);
                 System.out.println("Estado: " + (estado ? "Activo" : "Inactivo"));
-                System.out.println("ID del Empleado: " + idEmpleado);
-                System.out.println("Nombre del Empleado: " + nombreEmpleado + " " + apellidoEmpleado);
-                System.out.println("Fecha de Préstamo: " + fechaPrestamo);
-                System.out.println("Fecha de Devolución: " + fechaDevolucion);
                 System.out.println("-------------------");
             }
 
